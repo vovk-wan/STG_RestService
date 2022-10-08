@@ -146,7 +146,8 @@ STATICFILES_DIRS = [
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://localhost',
                         'http://nginx', 'http://0.0.0.0', 'http://0.0.0.0:8000',
-                        'http://127.0.0.1:8000', 'http://127.0.0.1', ]
+                        'http://127.0.0.1:8000', 'http://127.0.0.1',
+                        'http://51.250.28.106']
 
 # ***************************** LOGGING CONFIG **************************
 
