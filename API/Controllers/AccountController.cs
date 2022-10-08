@@ -38,7 +38,7 @@ namespace API.Controllers
      
             user.UserName = registerDto.Username.ToLower();
 
-            var result = await UserManager.CreateAsync(user, registerDto.Password);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
