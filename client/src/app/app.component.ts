@@ -10,7 +10,7 @@ import { AccountService } from './_services/account.service';
 })
 
 export class AppComponent implements OnInit {
-  title = 'The Dating App';
+  title = 'The STG App';
   users: any;
 
   constructor(private http: HttpClient, private accountSevice: AccountService) {}
