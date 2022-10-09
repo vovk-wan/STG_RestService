@@ -42,6 +42,8 @@ namespace API.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
+            //Создание кошелька в API ВТБ
+
             return new UserDto
             {
                 Username = user.UserName,
