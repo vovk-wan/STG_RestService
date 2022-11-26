@@ -1,0 +1,38 @@
+version: "3.7"
+networks:
+  wtb-net:
+    driver: bridge
+
+services:
+  app:
+    build: ./stg_restservice
+    container_name: stg_wtg
+    image: stg_wtb
+    command: >
+      sh -c "python manage.py shell < createadmin.py &&
+             gunicorn --env DJANGO_SETTINGS_MODULE=stg_restservice.settings -b 0.0.0.0:8000 -w 3 stg_restservice.wsgi"
+    env_file:
+      - ./.env
+    ports:
+      - '8000:8000'
+    restart: on-failure
+    volumes:
+      - ./docker-data/app_logs/app:/app/logs/app
+      - ./docker-data/static:/app/static/
+
+    networks:
+      - wtb-net
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    hostname: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./docker-data/config:/etc/nginx/conf.d
+      - ./docker-data/static:/static
+    depends_on:
+      - app
+    networks:
+      - wtb-net
